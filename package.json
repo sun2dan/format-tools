@@ -1,0 +1,37 @@
+{
+  "name": "format-tools",
+  "version": "0.0.1",
+  "description": "the formatter with multiple function for javascript",
+  "main": "dist/index.js",
+  "files": [
+    "dist/index.js",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {    
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sun2dan/format-tools.git"
+  },
+  "keywords": [
+    "format",
+    "formatter",
+    "format time",
+    "format date",
+    "format string",
+    "format number",
+    "format amount",
+    "format-tools"
+  ],
+  "author": "sun2dan <supericesun@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sun2dan/format-tools/issues"
+  },
+  "homepage": "https://github.com/sun2dan/format-tools#readme",
+  "devDependencies": {
+  }
+}
