@@ -3,7 +3,7 @@
   var hasDefine = typeof define === 'function';  // 检查上下文环境是否为Node
   var hasExports = typeof module !== 'undefined' && module.exports;
 
-  if (hasDefine) define(name,definition);// AMD环境或CMD环境
+  if (hasDefine) define(name, definition);// AMD环境或CMD环境
   else if (hasExports) module.exports = definition();   // 定义为普通Node模块
   else env[name] = definition();   // 将模块的执行结果挂在window变量中，在浏览器中this指向window对象
 })(this, 'formatTools', function () {
@@ -74,16 +74,22 @@
     else if (type === 'string') date = new Date(parseInt(date));
     else if (type !== 'date') date = new Date();
 
-    var str = date.toString(); // Sun Apr 01 2018 21:57:48 GMT+0800 (CST)
-
-    // 正则匹配出所有需要的数据
-    var res = str.replace(/\w+\s+(\w+)\s+(\d{2})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})[\s\S]+/gmi, '$3--$2 $4:$5:$6');  // 2018--04-01 12:04:05
-    // 月份是英文缩写，所以直接用 getMonth 方法获取到，根据数字的位数判断是否要添加0
-    var m = (date.getMonth() + 1).toString().replace(/^(\d)$/gmi, '0$1').replace(/^(\d+)$/gmi, '-$1-');
-    res = res.replace(/--/gmi, m);
+    // toString() - 时区有问题 / toLocaleString() - 兼容有问题
+    //var str = date.toString(); // Sun Apr 01 2018 21:57:48 GMT+0800 (CST)
+    var year = date.getFullYear();
+    var month = addZero(date.getMonth() + 1);
+    var day = addZero(date.getDate());
+    var hour = addZero(date.getHours());
+    var minute = addZero(date.getMinutes());
+    var second = addZero(date.getSeconds());
+    var tpl = '{0}-{1}-{2} {3}:{4}:{5}';
+    var res = format(tpl, year, month, day, hour, minute, second);
     if (splitChar && splitChar !== '-') res = res.replace(/-/gmi, splitChar);
-
     return res;
+
+    function addZero(n) {
+      return n < 10 ? '0' + n : n;
+    }
   }
 
   /**
