@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1.0,user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta charset="utf-8">
+  <title>format-tools测试</title>
+</head>
+<body>
+
+<div class="page">
+
+</div>
+
+<script src="https://cdn.bootcss.com/seajs/3.0.3/sea.js"></script>
+<!--<script src="https://cdn.bootcss.com/require.js/2.3.6/require.min.js"></script>-->
+<script src="../index.js"></script>
+<script>
+  (function () {
+
+    var total = {passing: 0, failing: 0};
+    setTimeout(function () {
+      console.log('%c' + total.passing + " passing , %c" + total.failing + " failing", "color:#39CD00", "color:#f00");
+    });
+
+    var describe = function (msg, fn) {
+      console.group(msg);
+      fn && fn();
+      console.groupEnd();
+    };
+    var it = function (msg, fn) {
+      console.log(msg);
+      fn();
+    };
+    var toEqual = function (orig, compare) {
+      var flag = orig === compare;
+      if (flag) {
+        total.passing++;
+        console.log(flag);
+      } else {
+        total.failing++;
+        console.error(flag, arguments.callee.caller);
+      }
+    };
+
+    // 普通方式测试
+    //commonTest(window.formatTools);
+
+    // seajs测试
+    seajs.use('formatTools', function (formatTools) {
+      commonTest(formatTools);
+    });
+    // requirejs
+    /*requirejs(['formatTools'], function (formatTools) {
+      commonTest(formatTools);
+    });*/
+
+    /**================================================================
+     测试代码
+     =================================================================*/
+    function commonTest(formatTools) {
+      describe('formatTools.format', function () {
+        it('1 参数为对象模式', function () {
+          var str = formatTools.format('{year}-{month}-{day}', {year: 2018, month: '08', day: 10}); // => '2018-08-10'
+          toEqual(str, '2018-08-10');
+        });
+        it('2 参数为单个模式', function () {
+          var str = formatTools.format('{0}-{1}-{2}', 2018, '08', 10); // => '2018-08-10'
+          toEqual(str, '2018-08-10');
+        });
+      });
+
+      describe('formatTools.formatDate', function () {
+        it('1 日期对象', function () {
+          var str = formatTools.formatDate(new Date(2018, 9, 10, 12, 34, 56)); // => '2018-10-10'
+          toEqual(str, '2018-10-10');
+        });
+        it('2 时间戳', function () {
+          var str = formatTools.formatDate(1539146096000, '/'); // => '2018/10/10'
+          toEqual(str, '2018/10/10');
+        });
+      });
+
+      describe('formatTools.formatTime', function () {
+        it('1 日期对象', function () {
+          var str = formatTools.formatTime(new Date(2018, 9, 10, 12, 34, 56)); // => '2018-10-10'
+          toEqual(str, '12:34:56');
+        });
+        it('2 时间戳', function () {
+          var str = formatTools.formatTime(1539146096000, '/'); // => '2018/10/10'
+          toEqual(str, '12:34:56');
+        });
+      });
+
+      describe('formatTools.formatTime', function () {
+        it('1 日期对象', function () {
+          var str = formatTools.formatDateTime(new Date(2018, 9, 10, 12, 34, 56));
+          toEqual(str, '2018-10-10 12:34:56');
+        });
+        it('2 时间戳', function () {
+          var str = formatTools.formatDateTime(1539146096000, '/');
+          toEqual(str, '2018/10/10 12:34:56');
+        });
+      });
+
+      describe('formatTools.formatByThousand', function () {
+        it('1 数字', function () {
+          var str = formatTools.formatByThousand(1234567);
+          toEqual(str, '1,234,567');
+        });
+        it('2 数字字符串', function () {
+          var str = formatTools.formatByThousand('1234.56');
+          toEqual(str, '1,234.56');
+        });
+      });
+
+      describe('formatTools.split4', function () {
+        it('1 测试', function () {
+          var str = formatTools.split4(6225880112345678);
+          toEqual(str, '6225 8801 1234 5678');
+        });
+      });
+
+      describe('formatTools.getType', function () {
+        it('1 所有类型测试', function () {
+          var res1 = formatTools.getType(new Date());
+          var res2 = formatTools.getType(123);
+          var res3 = formatTools.getType('test');
+          var res4 = formatTools.getType({a: 1});
+          var res5 = formatTools.getType(null);
+          var res6 = formatTools.getType(undefined);
+
+          toEqual(res1, 'date');
+          toEqual(res2, 'number');
+          toEqual(res3, 'string');
+          toEqual(res4, 'object');
+          toEqual(res5, 'null');
+          toEqual(res6, 'undefined');
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,9 +1,33 @@
 # format-tools
+[![Build Status](https://travis-ci.com/sun2dan/format-tools.svg?branch=master)](https://travis-ci.com/sun2dan/format-tools)
+
+[![NPM](https://nodei.co/npm/format-tools.png)](https://nodei.co/npm/format-tools/)
+
 一个简单的格式化工具；包含格式化日期时间、数字、字符串的几个常用方法；
 
 ## 安装
+### node
 ```js   
 $ npm install format-tools
+```
+### 浏览器
+```html 浏览器
+<script src='./index.js'></script>
+```
+以amd或cmd模式引入，如果环境不支持amd或cmd，挂载到window上，window.formatTools；
+```js amd+cmd+原生
+  // seajs测试
+  seajs.use('formatTools', function (formatTools) {
+    console.log(formatTools);
+  });
+  
+  // requirejs 测试
+  requirejs(['formatTools'], function (formatTools) {
+    console.log(formatTools);
+  });
+  
+  // 浏览器原生
+  console.log(window.formatTools);
 ```
 
 ## 用法
