@@ -2,13 +2,8 @@
 一个简单的格式化工具；包含格式化日期时间、数字、字符串的几个常用方法；
 
 ## 安装
-### Node
 ```js   
 $ npm install format-tools
-```
-### Browser
-```html
-<script src="path/format-tools.js"></script>
 ```
 
 ## 用法
