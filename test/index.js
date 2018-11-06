@@ -22,7 +22,7 @@ describe('formatTools.formatDate', function () {
   });
   it('2 时间戳', function () {
     var str = formatTools.formatDate(1539146096000, '/'); // => '2018/10/10'
-    toEqual(str, '2018/10/10');
+    toEqual(/\d{4}\/\d{2}\/\d{2}/gmi.test(str), true);
   });
   it('3 个位数年月、时分秒', function () {
     var str = formatTools.formatDate(new Date(2018, 8, 4, 1, 2, 3)); // => '2018/9/4'
@@ -37,7 +37,7 @@ describe('formatTools.formatTime', function () {
   });
   it('2 时间戳', function () {
     var str = formatTools.formatTime(1539146096000); // => '12:34:56'
-    toEqual(str, '12:34:56');
+    toEqual(/\d{2}\:\d{2}\:\d{2}/gmi.test(str), true);
   });
   it('3 个位数年月、时分秒', function () {
     var str = formatTools.formatTime(new Date(2018, 8, 4, 1, 2, 3)); // => '01:02:03'
@@ -51,8 +51,8 @@ describe('formatTools.formatDateTime', function () {
     toEqual(str, '2018-09-04 01:02:03');
   });
   it('2 时间戳', function () {
-    var str = formatTools.formatDateTime(1539146096000, '/');
-    toEqual(str, '2018/10/10 12:34:56');
+    var str = formatTools.formatDateTime(1539146096000, '/');        //'2018/10/10 12:34:56'
+    toEqual(/\d{4}\/\d{2}\/\d{2}\s+\d{2}\:\d{2}\:\d{2}/gmi.test(str), true);
   });
 });
 

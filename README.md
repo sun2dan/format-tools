@@ -16,7 +16,8 @@ $ npm install format-tools
 ```
 以amd或cmd模式引入，如果环境不支持amd或cmd，挂载到window上，window.formatTools；
 
-[点击此处查看测试页面](https://sun2dan.github.io/format-tools/test/index.html)
+<a href='https://sun2dan.github.io/format-tools/test/index.html' target='_blank'>点击此处查看测试页面</a>
+
 ```js amd+cmd+原生
   // seajs测试
   seajs.use('formatTools', function (formatTools) {

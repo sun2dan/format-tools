@@ -69,12 +69,11 @@
     date = date || new Date();
     splitChar = splitChar || '-';
 
-    var type = getType(date);
+    var type = getType(date);   
     if (type === "number") date = new Date(date);
     else if (type === 'string') date = new Date(parseInt(date));
     else if (type !== 'date') date = new Date();
-
-    // toString() - 时区有问题 / toLocaleString() - 兼容有问题
+    
     //var str = date.toString(); // Sun Apr 01 2018 21:57:48 GMT+0800 (CST)
     var year = date.getFullYear();
     var month = addZero(date.getMonth() + 1);
