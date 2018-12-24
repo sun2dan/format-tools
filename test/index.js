@@ -1,7 +1,7 @@
 'use strict';
 
 //import formatTools from '../index'
-var formatTools = require('../index');
+var formatTools = require('../dist/index');
 var expect = require('chai').expect;
 
 describe('formatTools.format', function () {

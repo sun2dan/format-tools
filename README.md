@@ -12,7 +12,7 @@ $ npm install format-tools
 ```
 ### 浏览器
 ```html 浏览器
-<script src='./index.js'></script>
+<script src='./dist/index.js'></script>
 ```
 以amd或cmd模式引入，如果环境不支持amd或cmd，挂载到window上，window.formatTools；
 
@@ -39,7 +39,7 @@ $ npm install format-tools
 var formatTools = require('format-tools'); // node环境中的require引用、浏览器环境
 ```
 ```js
-import formatTools from 'format-tools/dist/index'; // es6的import引用
+import formatTools from 'format-tools/index'; // es6的import引用
 ```
 
 ### format(str, args)
