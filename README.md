@@ -36,7 +36,10 @@ $ npm install format-tools
 ## 用法
 ### 引用
 ```js
-import formatTools from 'format-tools';
+var formatTools = require('format-tools'); // node环境中的require引用、浏览器环境
+```
+```js
+import formatTools from 'format-tools/dist/index'; // es6的import引用
 ```
 
 ### format(str, args)

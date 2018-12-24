@@ -1,6 +1,6 @@
 {
   "name": "format-tools",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "the formatter with multiple function for javascript",
   "main": "index.js",
   "files": [
