@@ -111,6 +111,6 @@
     return str.toString().replace(/\s+/gmi, "").replace(/(.{4})/gmi, "$1 ").replace(/\s+$/gmi, "");
   }
 
-  var formatTools = {getType, format, formatDate, formatTime, formatDateTime, split4, formatByThousand};
+  var formatTools = {getType:getType, format:format, formatDate:formatDate, formatTime:formatTime, formatDateTime:formatDateTime, split4:split4, formatByThousand:formatByThousand};
   return formatTools;
 });
